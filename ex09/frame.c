@@ -12,33 +12,31 @@ int main(int argc, char *argv[]) {
     while (argv[++k])
     {
     max_len = 0;
-    const char delimiter[2] = " ";
-
     char *cpy = strdup(argv[k]);
-    char *word = strtok(cpy, delimiter);
+    char *word = strtok(cpy, " ");
     while (word != NULL) {
         int len = strlen(word);
         if (len > max_len) {
             max_len = len;
         }
-        word = strtok(NULL, delimiter);
+        word = strtok(NULL, " ");
     }
     free(cpy);
     for (int i = 0; i < max_len + 4; i++) {
         printf("*");
     }
     printf("\n");
-    strtok(NULL, delimiter);
+    strtok(NULL, " ");
     cpy = strdup(argv[k]);
-        char *word2 = strtok(cpy, delimiter);
+        char *word2 = strtok(cpy, " ");
         while (word2 != NULL) {
             int len = strlen(word2);
             printf("* %s", word2);
             for (int k = 0; k < max_len - len; k++) {
-                printf(delimiter);
+                printf(" ");
             }
             printf(" *\n");
-            word2 = strtok(NULL, delimiter);
+            word2 = strtok(NULL, " ");
         }
     free(cpy);
     for (int i = 0; i < max_len + 4; i++) {
