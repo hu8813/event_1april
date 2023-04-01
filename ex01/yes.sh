@@ -2,5 +2,5 @@
 
 while true
 do
-    ls $0 | cut -d. -f1
+    basename -s .sh $0
 done
