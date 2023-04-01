@@ -1,0 +1,3 @@
+hi,
+this is a test file for mail attachment
+bye!
