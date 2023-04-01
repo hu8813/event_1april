@@ -3,35 +3,38 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
 
-# email details
-from_addr = 'sender@example.com'
-to_addr = 'recipient@example.com'
-subject = 'Email with Attachment'
+from_addr = input("Enter sender email address: ").strip()
+to_addr = input("Enter receiver email address: ").strip()
+subject = input("Enter email subject: ")
+body = input("Enter email message: ")
+filename = "attachment.txt"
 
-# create a message container
+if from_addr.isempty() or to_addr.isempty() or subject.isempty() or body.isempty():
+    print("Error: Missing information")
+    exit()
+
 msg = MIMEMultipart()
 msg['From'] = from_addr
 msg['To'] = to_addr
 msg['Subject'] = subject
 
-# add body text
-body = 'This email contains an attachment.'
 msg.attach(MIMEText(body))
 
-# add attachment
-filename = 'attachment.txt'
 with open(filename, 'rb') as f:
     attachment = MIMEApplication(f.read(), _subtype='txt')
     attachment.add_header('Content-Disposition', 'attachment', filename=filename)
     msg.attach(attachment)
 
-# connect to SMTP server and send email
-smtp_server = 'smtp.example.com'
+#smtp_server = 'smtp.freesmtpservers.com'
+#smtp_port = 25
+
+smtp_server = 'smtp.ionos.de'
 smtp_port = 587
-smtp_username = 'username'
-smtp_password = 'password'
+smtp_username = ''
+smtp_password = ''
 
 with smtplib.SMTP(smtp_server, smtp_port) as smtp:
     smtp.starttls()
     smtp.login(smtp_username, smtp_password)
     smtp.sendmail(from_addr, to_addr, msg.as_string())
+    print(f'Email sent successfully to: {to_addr}')
