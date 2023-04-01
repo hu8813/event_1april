@@ -6,5 +6,7 @@ if ( $str ) {
         print "The string is a polindrome!\n";
     } else {
         print "The string is not a polindrome.\n";
+    }  
+} else {
+        print "You didn't enter a string!\n";
     }
-}
