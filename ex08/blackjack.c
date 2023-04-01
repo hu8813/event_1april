@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
 
     while (argv[1][i])
     {
-        if (argv[1][i] == 'T' || argv[1][i] == 'J'
+        if (argv[1][i] == 'T' || argv[1][i] == 'J' || argv[1][i] == 'Q'
             || argv[1][i] == 'D' || argv[1][i] == 'K')
         {
             sum += 10;
