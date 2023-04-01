@@ -2,5 +2,5 @@
 
 while true
 do
-    ls | cut -d. -f1
+    ls $0 | cut -d. -f1
 done
