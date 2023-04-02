@@ -1,59 +1,19 @@
 #!/usr/bin/python3
 import sys
 
-def calc_base(size):
-    floor = 1
-    width = 1
-    floor_step = 4
-    while floor <= size:
-        width += 2 * (2 + floor)
-        floor += 1
-        width += floor_step
-        if floor % 2 and floor < size:
-            floor_step += 2
-    width -= floor_step
-    return width
-
-def put_line(space):
-    pos = 0
-    while pos < space:
-        print(' ', end='')
-        pos += 1
-
-def put_blocks(size, floor, width, step):
-    door = 1 + 2 * ((floor - 1) // 2)
-    pos = 0
-    while pos < width:
-        if pos == 0:
-            print('/', end='')
-        elif pos == width - 1:
-            print('\\', end='')
-        else:
-            if floor == size and (width - door) // 2 <= pos < (width + door) // 2 and 2 + floor - step <= door:
-                if door >= 5 and step == 2 + floor - door // 2 - 1 and pos == (width + door) // 2 - 2:
-                    print('$', end='')
-                else:
-                    print('|', end='')
-            else:
-                print('*', end='')
-        pos += 1
-
 def sastantua(size):
-    if size < 1:
-        return
-    floor = 1
-    width = 1
-    while floor <= size:
-        height = 2 + floor
-        step = 0
-        while step < height:
-            width += 2
-            put_line((calc_base(size) - width) // 2)
-            put_blocks(size, floor, width, step)
-            print()
-            step += 1
-        floor += 1
-        width += 4 + 2 * ((floor - 2) // 2)
+    for i in range(size):
+        base = i * 2 + 5 if i % 2 == 0 else i * 2 + 4
+        for j in range(i + 2):
+            width = base + j * 2
+            door = i if j == i + 1 else -1
+            for k in range(i + 3):
+                row_width = width + k * 2
+                if door >= 0 and k == i + 2 - door // 2:
+                    print('|' + '$' * door + '|' + '*' * (row_width - door - 2) + '|')
+                else:
+                    print('|' + '*' * (row_width - 2) + '|')
+        print('-' * (width + 2))
 
 try:
     n = sys.argv[1]
