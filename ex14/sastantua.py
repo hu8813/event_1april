@@ -13,34 +13,27 @@ def calc_base(size):
     return width
 
 def put_blocks(size, floor, width, step):
-    door = 1 + 2 * ((floor - 1) // 2)
-    pos = 0
-    while pos < width:
+    door = 1 + 2*((floor-1)//2)
+    for pos in range(width):
         if pos == 0:
             print('/', end='')
         elif pos == width - 1:
             print('\\', end='')
         else:
-            if floor == size and (width - door) // 2 <= pos < (width + door) // 2 and 2 + floor - step <= door:
-                if door >= 5 and step == 2 + floor - door // 2 - 1 and pos == (width + door) // 2 - 2:
-                    print('$', end='')
-                else:
-                    print('|', end='')
+            if floor == size and (width-door)//2 <= pos < (width+door)//2 and 2+floor-step <= door:
+                print('$' if door >= 5 and step == 2+floor-door//2-1 and pos == (width+door)//2-2 else '|', end='')
             else:
                 print('*', end='')
-        pos += 1
 
 def sastantua(size):
     floor = width = 1
     while floor <= size:
         height = 2 + floor
-        step = 0
-        while step < height:
+        for step in range(height):
             width += 2
             print(" "*((calc_base(size) - width) // 2),end="")
             put_blocks(size, floor, width, step)
             print()
-            step += 1
         floor += 1
         width += 4 + 2 * ((floor - 2) // 2)
 
