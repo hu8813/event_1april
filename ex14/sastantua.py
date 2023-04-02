@@ -2,9 +2,7 @@
 import sys
 
 def calc_base(size):
-    floor = 1
-    width = 1
-    floor_step = 4
+    floor, width, floor_step = 1, 1, 4
     while floor <= size:
         width += 2 * (2 + floor)
         floor += 1
@@ -33,10 +31,7 @@ def put_blocks(size, floor, width, step):
         pos += 1
 
 def sastantua(size):
-    if size < 1:
-        return
-    floor = 1
-    width = 1
+    floor = width = 1
     while floor <= size:
         height = 2 + floor
         step = 0
