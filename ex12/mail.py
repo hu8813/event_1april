@@ -1,11 +1,28 @@
 #!/usr/bin/python3
 import smtplib
+import re
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
 
+def is_valid_email(email):
+    """Return True if the email address is valid, False otherwise."""
+    if not email:
+        return False
+    pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    return re.match(pattern, email) is not None
+
 from_addr = input("Enter sender email address: ").strip()
 to_addr = input("Enter receiver email address: ").strip()
+
+if not is_valid_email(from_addr):
+    print("Invalid sender email address.")
+    exit()
+
+if not is_valid_email(to_addr):
+    print("Invalid receiver email address.")
+    exit()
+
 subject = input("Enter email subject: ")
 body = input("Enter email message: ")
 filename = "attachment.txt"
