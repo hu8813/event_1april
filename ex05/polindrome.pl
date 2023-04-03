@@ -1,7 +1,6 @@
 #!/usr/bin/perl
 print "Enter a string: ";
 $str = <STDIN>;
-print $str;
 if ( $str =~ /\w/) {
     chomp($str);
     $str =~ s/\W//g;
