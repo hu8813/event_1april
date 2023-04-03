@@ -1,3 +1,4 @@
+#!/usr/bin/perl
 print "Enter a string: ";
 $str = <STDIN>;
 print $str;
