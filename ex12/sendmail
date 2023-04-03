@@ -12,12 +12,7 @@ def is_valid_email(email):
     pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
     return re.match(pattern, email) is not None
 
-from_addr = input("Enter sender email address: ").strip()
 to_addr = input("Enter receiver email address: ").strip()
-
-if not is_valid_email(from_addr):
-    print("Invalid sender email address.")
-    exit()
 
 if not is_valid_email(to_addr):
     print("Invalid receiver email address.")
@@ -28,11 +23,16 @@ body = input("Enter email message: ")
 filename = "attachment.txt"
 
 try:
-    if not from_addr or not to_addr or not subject or not body:
+    if not to_addr or not subject or not body:
         raise Exception("Error: Missing information")
 
     msg = MIMEMultipart()
-    msg['From'] = from_addr
+    smtp_server = 'smtp.ionos.de'
+    smtp_port = 587
+    smtp_username = ''
+    smtp_password = ''
+    from_addr = smtp_username
+    msg['From'] = smtp_username
     msg['To'] = to_addr
     msg['Subject'] = subject
 
@@ -42,11 +42,6 @@ try:
         attachment = MIMEApplication(f.read(), _subtype='txt')
         attachment.add_header('Content-Disposition', 'attachment', filename=filename)
         msg.attach(attachment)
-
-    smtp_server = 'smtp.ionos.de'
-    smtp_port = 587
-    smtp_username = ''
-    smtp_password = ''
 
     with smtplib.SMTP(smtp_server, smtp_port) as smtp:
         smtp.starttls()
