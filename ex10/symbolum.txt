@@ -1,1 +1,25 @@
 kh2JFM
+
+
+
+
+Caesar cipher shift 10
+For this exercice you will have to write the password in a symbolum.txt file.
+
+Base64-encoded message
+Congratulations on decoding this line, the first letter is: k
+
+Substitution Cipher/ A-Z B-Y
+Congratulations on decoding this line, the third letter is: h
+
+Decimal to ASCII
+CONGRATULATIONS ON DECODING THIS LINE THE NEXT CHARACTER IS 2
+
+First letter/Nato alphabet
+CONGRATULATIONS ON DECODING THIS LINE THE NEXT LETTER IS J
+
+Glitch/Leet
+CONGRATULATIONS ON DECODING THIS LINE THE NEXT LETTER IS F
+
+Playfair cipher
+CONGRATULATIONS ON DECODING THIS LINE, THE LAST LETXTER IS: M
